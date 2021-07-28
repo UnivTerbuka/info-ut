@@ -8,6 +8,7 @@ authors = ["hexatester <revolusi147id@gmail.com>"]
 python = "^3.9"
 feedparser = "^6.0.8"
 beautifulsoup4 = "^4.9.3"
+attrs = "^21.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
