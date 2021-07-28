@@ -1,6 +1,9 @@
 [tool.poetry]
 name = "info-ut"
 version = "0.1.0"
+readme = "README.md"
+license = "GPL-3.0-only"
+repository = "https://github.com/UnivTerbuka/info-ut"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
