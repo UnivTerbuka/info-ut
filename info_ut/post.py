@@ -42,9 +42,7 @@ class Post:
                 imgs.append(BASE_URL + img_url)
             else:
                 imgs.append(img_url)
-        tags_content: Tag = main_block.find(
-            "div", class_="field-name-field-tags"
-        )
+        tags_content: Tag = main_block.find("div", class_="field-name-field-tags")
         tags: List[str] = list()
         for tag in tags_content.find_all("div", "field-item"):
             a_tag = tag.find("a")
