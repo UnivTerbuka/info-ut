@@ -1,4 +1,5 @@
 import attr
+import time
 from datetime import datetime
 
 
@@ -14,6 +15,8 @@ class FeedItem:
     def __attrs_post_init__(self) -> None:
         if isinstance(self.guid, str) and " at https://www.ut.ac.id" in self.guid:
             self.guid = int(str(self.guid).strip(" at https://www.ut.ac.id"))
+        if isinstance(self.published, time.struct_time):
+            self.published = datetime.fromtimestamp(time.mktime(self.published))
 
     @classmethod
     def from_dict(cls, val) -> "FeedItem":
@@ -23,5 +26,5 @@ class FeedItem:
             title=val.title,
             link=val.link,
             description=val.description,
-            published=datetime(*val.published_parsed),
+            published=val.published_parsed,
         )

@@ -1,4 +1,5 @@
 import attr
+import time
 from datetime import datetime
 from feedparser import FeedParserDict
 from typing import Iterator, List, Optional
@@ -11,11 +12,17 @@ class Feed:
     title: str
     link: str
     description: str
-    published: datetime
+    etag: str
+    updated: datetime
     items: List[FeedItem] = attr.field(factory=list)
 
     def __attrs_post_init__(self) -> None:
-        pass
+        if isinstance(self.updated, time.struct_time):
+            self.updated = datetime.fromtimestamp(time.mktime(self.updated))
+        new_items: List[FeedItem] = list()
+        for item in self.items:
+            new_items.append(FeedItem.from_dict(item))
+        self.items = new_items
 
     def __iter__(self) -> Iterator[FeedItem]:
         return iter(self.items)
@@ -29,5 +36,7 @@ class Feed:
             title=feed.feed.title,
             link=feed.feed.link,
             description=feed.feed.description,
-            published=datetime(*feed.feed.published_parsed),
+            etag=feed.etag,
+            updated=feed.updated,
+            items=feed.entries,
         )
