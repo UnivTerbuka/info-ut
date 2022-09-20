@@ -6,3 +6,11 @@
 [![Mypy](https://img.shields.io/badge/Mypy-enabled-brightgreen)](https://github.com/python/mypy)
 
 Modul python untuk medapatkan informasi terbaru dari website Universitas Terbuka
+
+## Install
+
+Install dengan menggunakan python3-pip
+
+```bash
+python -m pip install -u info-ut
+```
